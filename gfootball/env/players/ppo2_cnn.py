@@ -79,6 +79,7 @@ def _load_variables(load_path, sess, prefix='', remove_prefix=True):
                if v.name.startswith(prefix)]
 
   loaded_params = joblib.load(load_path)
+  print("keys:", loaded_params.keys())
   restores = []
   for v in variables:
     v_name = v.name[len(prefix):] if remove_prefix else v.name
