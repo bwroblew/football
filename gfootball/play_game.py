@@ -37,6 +37,7 @@ flags.DEFINE_enum('action_set', 'default', ['default', 'full'], 'Action set')
 flags.DEFINE_bool('real_time', True,
                   'If true, environment will slow down so humans can play.')
 flags.DEFINE_bool('render', True, 'Whether to do game rendering.')
+flags.DEFINE_bool('write_video', False, 'Whether to write the video.')
 
 
 def main(_):
@@ -48,6 +49,7 @@ def main(_):
       'dump_full_episodes': True,
       'players': players,
       'real_time': FLAGS.real_time,
+      'write_video': FLAGS.write_video,
   })
   if FLAGS.level:
     cfg['level'] = FLAGS.level
