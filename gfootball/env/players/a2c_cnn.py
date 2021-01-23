@@ -12,11 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-r"""Player from PPO2 cnn checkpoint.
+r"""Player from A2c cnn checkpoint.
 
 Example usage with play_game script:
 python3 -m gfootball.play_game \
-    --players "ppo2_cnn:left_players=1,checkpoint=$YOUR_PATH,policy=$POLICY"
+    --players "a2c_cnn:left_players=1,checkpoint=$YOUR_PATH,policy=$POLICY"
 
 $POLICY should be one of: cnn, impala_cnn, gfootball_impala_cnn.
 """
@@ -33,7 +33,7 @@ import tensorflow.compat.v1 as tf
 
 
 class Player(player_base.PlayerBase):
-  """An agent loaded from PPO2 cnn model checkpoint."""
+  """An agent loaded from A2C cnn model checkpoint."""
 
   def __init__(self, player_config, env_config):
     player_base.PlayerBase.__init__(self, player_config)
@@ -48,7 +48,7 @@ class Player(player_base.PlayerBase):
     policy = player_config.get('policy', 'cnn')
     self._stacker = ObservationStacker(stacking)
     with tf.variable_scope(self._player_prefix):
-      with tf.variable_scope('ppo2_model'):
+      with tf.variable_scope('a2c_model'):
         policy_fn = build_policy(DummyEnv(self._action_set, stacking), policy)
         self._policy = policy_fn(nbatch=1, sess=self._sess)
     _load_variables(player_config['checkpoint'], self._sess,
