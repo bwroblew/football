@@ -111,8 +111,6 @@ def train(_):
              ent_coef=FLAGS.ent_coef,
              lr=FLAGS.lr,
              log_interval=100,
-             save_interval=FLAGS.save_interval,
-             cliprange=FLAGS.cliprange,
              load_path=FLAGS.load_path)
   model.save(FLAGS.save_path)
 
