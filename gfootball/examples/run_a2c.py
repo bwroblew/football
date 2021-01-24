@@ -66,6 +66,7 @@ flags.DEFINE_bool('dump_scores', False,
                   'If True, sampled traces after scoring are dumped.')
 flags.DEFINE_string('load_path', None, 'Path to load initial checkpoint from.')
 flags.DEFINE_string('save_path', None, 'Path to save checkpoint to.')
+flags.DEFINE_string('lrschedule', 'linear', 'LR schedule')
 
 
 def create_single_football_env(iprocess):
@@ -111,7 +112,8 @@ def train(_):
              ent_coef=FLAGS.ent_coef,
              lr=FLAGS.lr,
              log_interval=100,
-             load_path=FLAGS.load_path)
+             load_path=FLAGS.load_path,
+             lrschedule=FLAGS.lrschedule)
   model.save(FLAGS.save_path)
 
 
