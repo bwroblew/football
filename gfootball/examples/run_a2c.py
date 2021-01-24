@@ -56,6 +56,7 @@ flags.DEFINE_integer('save_interval', 100,
 flags.DEFINE_integer('seed', 0, 'Random seed.')
 flags.DEFINE_float('lr', 7e-4, 'Learning rate')
 flags.DEFINE_float('ent_coef', 0.01, 'Entropy coeficient')
+flags.DEFINE_float('vf_coef', 0.25, 'VF coeficient')
 flags.DEFINE_float('gamma', 0.993, 'Discount factor')
 flags.DEFINE_float('cliprange', 0.27, 'Clip range')
 flags.DEFINE_float('max_grad_norm', 0.5, 'Max gradient norm (clipping)')
@@ -111,9 +112,10 @@ def train(_):
              gamma=FLAGS.gamma,
              ent_coef=FLAGS.ent_coef,
              lr=FLAGS.lr,
-             log_interval=100,
+             log_interval=5,
              load_path=FLAGS.load_path,
-             lrschedule=FLAGS.lrschedule)
+             lrschedule=FLAGS.lrschedule,
+             vf_coef=FLAGS.vf_coef)
   model.save(FLAGS.save_path)
 
 
