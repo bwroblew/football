@@ -38,6 +38,7 @@ flags.DEFINE_bool('real_time', True,
                   'If true, environment will slow down so humans can play.')
 flags.DEFINE_bool('render', True, 'Whether to do game rendering.')
 flags.DEFINE_bool('write_video', False, 'Whether to write the video.')
+flags.DEFINE_integer('iters', 1000, 'Number of iterations to run.')
 
 
 def main(_):
@@ -58,9 +59,11 @@ def main(_):
     env.render()
   env.reset()
   try:
-    while True:
+    iters_done = 0
+    while iters_done < FLAGS.iters:
       _, _, done, _ = env.step([])
       if done:
+        iters_done += 1
         env.reset()
   except KeyboardInterrupt:
     logging.warning('Game stopped, writing dump...')
