@@ -23,6 +23,7 @@ from . import *
 def build_scenario(builder):
   builder.config().game_duration = 400
   builder.config().deterministic = False
+  builder.config().left_team_difficulty = 0.10
   builder.config().right_team_difficulty = 0.10
   builder.config().offsides = False
   builder.config().end_episode_on_score = True
